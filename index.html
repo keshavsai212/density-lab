@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Density Lab | IGCSE Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Density Lab home">
+        <span class="brand-mark">D</span>
+        <span>Density Lab</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#topics">Topics</a>
+        <a href="#lab-preview">Lab Preview</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">IGCSE Grade 6-9 Science</p>
+          <h1 id="hero-title">Density made clear, one step at a time.</h1>
+          <p class="hero-text">
+            Learn how mass and volume work together to explain why some objects
+            float, some sink, and some materials feel surprisingly heavy for
+            their size.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#topics">Start Learning</a>
+            <a class="button ghost" href="#lab-preview">Preview the Lab</a>
+          </div>
+        </div>
+
+        <div class="density-visual" aria-label="Density comparison visual">
+          <div class="tank">
+            <div class="water-line"></div>
+            <div class="object cork">Cork</div>
+            <div class="object wood">Wood</div>
+            <div class="object metal">Metal</div>
+          </div>
+          <div class="formula-card" aria-label="Density formula">
+            <span>Density</span>
+            <strong>mass / volume</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro" aria-label="Website overview">
+        <div>
+          <p class="section-kicker">Foundation</p>
+          <h2>A calm starting point for a complete density website.</h2>
+        </div>
+        <p>
+          This first version sets up the structure for future lessons,
+          diagrams, quizzes, worked examples, and experiments. The content is
+          intentionally short so each topic can be expanded carefully.
+        </p>
+      </section>
+
+      <section class="topics" id="topics" aria-labelledby="topics-title">
+        <div class="section-heading">
+          <p class="section-kicker">Learning Path</p>
+          <h2 id="topics-title">Topic placeholders</h2>
+        </div>
+
+        <div class="topic-grid">
+          <article class="topic-card">
+            <span class="topic-number">01</span>
+            <h3>What Is Density?</h3>
+            <p>A simple definition and everyday comparisons.</p>
+          </article>
+          <article class="topic-card">
+            <span class="topic-number">02</span>
+            <h3>Mass and Volume</h3>
+            <p>A quick recap before using the density formula.</p>
+          </article>
+          <article class="topic-card">
+            <span class="topic-number">03</span>
+            <h3>Density Formula</h3>
+            <p>How to use density = mass / volume in calculations.</p>
+          </article>
+          <article class="topic-card">
+            <span class="topic-number">04</span>
+            <h3>Floating and Sinking</h3>
+            <p>Why density helps predict what happens in liquids.</p>
+          </article>
+          <article class="topic-card">
+            <span class="topic-number">05</span>
+            <h3>Experiments</h3>
+            <p>Safe classroom-style investigations students can try.</p>
+          </article>
+          <article class="topic-card">
+            <span class="topic-number">06</span>
+            <h3>Worked Examples</h3>
+            <p>Step-by-step problem solving with units.</p>
+          </article>
+          <article class="topic-card">
+            <span class="topic-number">07</span>
+            <h3>Quizzes</h3>
+            <p>Short checks to build confidence after each lesson.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lab-preview" id="lab-preview" aria-labelledby="lab-title">
+        <div class="lab-copy">
+          <p class="section-kicker">Interactive Preview</p>
+          <h2 id="lab-title">Future density lab</h2>
+          <p>
+            This area is reserved for an interactive activity where learners can
+            compare objects, change mass or volume, and predict whether an item
+            will float or sink.
+          </p>
+        </div>
+        <div class="mini-lab" aria-label="Future lab controls preview">
+          <div class="lab-meter">
+            <span>Mass</span>
+            <div class="meter-bar"><span style="width: 72%"></span></div>
+          </div>
+          <div class="lab-meter">
+            <span>Volume</span>
+            <div class="meter-bar"><span style="width: 42%"></span></div>
+          </div>
+          <div class="result-pill">Higher density</div>
+        </div>
+      </section>
+
+      <section class="simulator" id="simulator" aria-labelledby="simulator-title">
+        <div class="section-heading">
+          <p class="section-kicker">Density Simulator</p>
+          <h2 id="simulator-title">Drop materials into water</h2>
+          <p>
+            Choose a material, calculate its density from mass and volume, then
+            run the experiment to discover whether it floats or sinks.
+          </p>
+        </div>
+
+        <div class="simulator-layout">
+          <div class="sim-panel" aria-label="Material controls">
+            <div class="material-picker" id="material-picker" aria-label="Choose a material"></div>
+
+            <div class="density-readout" aria-live="polite">
+              <div>
+                <span>Material</span>
+                <strong id="material-name">Cork</strong>
+              </div>
+              <div>
+                <span>Mass</span>
+                <strong id="material-mass">12 g</strong>
+              </div>
+              <div>
+                <span>Volume</span>
+                <strong id="material-volume">50 cm3</strong>
+              </div>
+              <div>
+                <span>Water density</span>
+                <strong>1.00 g/cm3</strong>
+              </div>
+            </div>
+
+            <form class="calculation-panel" id="density-form">
+              <label for="density-answer">Calculate density = mass / volume</label>
+              <div class="answer-row">
+                <input
+                  id="density-answer"
+                  name="density-answer"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  placeholder="g/cm3"
+                  autocomplete="off"
+                />
+                <button class="button primary check-button" type="submit">
+                  Check Density
+                </button>
+              </div>
+              <p class="calculation-status" id="calculation-status">
+                Enter your answer before the experiment starts.
+              </p>
+            </form>
+
+            <div class="answer-readout" aria-live="polite">
+              <div>
+                <span>Calculated density</span>
+                <strong id="material-density">Locked</strong>
+              </div>
+              <div>
+                <span>Experiment result</span>
+                <strong id="material-result">Locked</strong>
+              </div>
+            </div>
+
+            <p class="sim-explanation" id="sim-explanation">
+              Calculate the density first, then run the water test.
+            </p>
+
+            <button class="button primary replay-button" id="replay-button" type="button" disabled>
+              Run Experiment
+            </button>
+          </div>
+
+          <div class="water-sim" aria-label="Animated water tank simulation">
+            <div class="sim-tank">
+              <div class="sim-air"></div>
+              <div class="sim-water">
+                <div class="wave wave-one"></div>
+                <div class="wave wave-two"></div>
+                <div class="ripple"></div>
+                <div class="splash splash-left"></div>
+                <div class="splash splash-right"></div>
+              </div>
+              <div class="sim-object ready" id="sim-object">Cork</div>
+              <div class="density-scale">
+                <span>Less dense</span>
+                <span>Water line</span>
+                <span>More dense</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="roadmap" id="roadmap" aria-labelledby="roadmap-title">
+        <div class="section-heading">
+          <p class="section-kicker">Next Builds</p>
+          <h2 id="roadmap-title">What can be added next</h2>
+        </div>
+        <ol class="roadmap-list">
+          <li>Write the first lesson: “What is density?”</li>
+          <li>Add diagrams for mass, volume, and particles.</li>
+          <li>Create the first worked example with unit support.</li>
+          <li>Add a short quiz with instant feedback.</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Built as a foundation for an IGCSE density learning website.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
