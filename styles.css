@@ -261,6 +261,7 @@ h3 {
 .intro,
 .topics,
 .lab-preview,
+.meniscus-lesson,
 .simulator,
 .roadmap {
   padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 5vw, 5rem);
@@ -369,6 +370,218 @@ h3 {
   background: var(--yellow);
   padding: 0.5rem 0.75rem;
   font-weight: 700;
+}
+
+.meniscus-lesson {
+  background: #eef7fb;
+}
+
+.meniscus-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.75fr) minmax(360px, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.cylinder-demo,
+.method-panel {
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.cylinder-demo {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.cylinder {
+  position: relative;
+  width: min(260px, 100%);
+  height: 440px;
+  overflow: hidden;
+  border: 3px solid #233341;
+  border-top-width: 8px;
+  border-radius: 0 0 24px 24px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.78), transparent 18% 82%, rgba(255, 255, 255, 0.7)),
+    repeating-linear-gradient(to bottom, transparent 0 38px, rgba(23, 33, 43, 0.12) 38px 40px);
+}
+
+.cylinder::before,
+.cylinder::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  content: "";
+  background: rgba(23, 33, 43, 0.16);
+}
+
+.cylinder::before {
+  left: 22%;
+}
+
+.cylinder::after {
+  right: 22%;
+}
+
+.ticks {
+  position: absolute;
+  inset: 54px auto 42px 0.6rem;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--muted);
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.cylinder-water {
+  position: absolute;
+  right: 26px;
+  bottom: 0;
+  left: 26px;
+  background:
+    linear-gradient(180deg, rgba(89, 179, 216, 0.38), rgba(47, 111, 189, 0.62)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.14) 0 2px, transparent 2px 26px);
+}
+
+.cylinder-water.before {
+  height: 42%;
+  opacity: 0.55;
+}
+
+.cylinder-water.after {
+  height: 66%;
+  animation: rise-water 4s ease-in-out infinite;
+}
+
+.meniscus-curve {
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  border-bottom: 5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: rgba(89, 179, 216, 0.32);
+}
+
+.irregular-object {
+  position: absolute;
+  right: 74px;
+  bottom: 64px;
+  z-index: 5;
+  width: 76px;
+  height: 66px;
+  border: 2px solid rgba(23, 33, 43, 0.24);
+  border-radius: 45% 38% 48% 36%;
+  background: #a49687;
+  box-shadow: 0 12px 20px rgba(23, 33, 43, 0.18);
+  transform: rotate(-9deg);
+  animation: object-dip 4s ease-in-out infinite;
+}
+
+.read-line {
+  position: absolute;
+  right: 0.6rem;
+  z-index: 6;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.35rem 0.5rem;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.initial-line {
+  bottom: 40%;
+}
+
+.final-line {
+  bottom: 64%;
+}
+
+.meniscus-note {
+  margin: 0;
+  border-left: 4px solid var(--teal);
+  padding: 0.75rem 0 0.75rem 1rem;
+  color: var(--muted);
+}
+
+.method-panel {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.method-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.method-list li {
+  padding-left: 0.25rem;
+}
+
+.worked-example,
+.practice-card {
+  display: grid;
+  gap: 0.55rem;
+  border-radius: 8px;
+  background: #f3f6f7;
+  padding: 1rem;
+}
+
+.worked-example p,
+.worked-example h3 {
+  margin: 0;
+}
+
+.worked-example strong {
+  color: var(--teal);
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-size: 1.2rem;
+}
+
+.worked-example span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.practice-card label {
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-weight: 700;
+}
+
+@keyframes rise-water {
+  0%,
+  100% {
+    height: 42%;
+  }
+  45%,
+  82% {
+    height: 66%;
+  }
+}
+
+@keyframes object-dip {
+  0%,
+  20% {
+    transform: translateY(-190px) rotate(-16deg);
+  }
+  45%,
+  100% {
+    transform: translateY(0) rotate(-9deg);
+  }
 }
 
 .simulator {
@@ -833,6 +1046,7 @@ h3 {
 }
 
 @media (max-width: 1160px) {
+  .meniscus-layout,
   .simulator-layout {
     grid-template-columns: 1fr;
   }
@@ -855,6 +1069,10 @@ h3 {
 
   .density-visual {
     min-height: 420px;
+  }
+
+  .cylinder {
+    height: 400px;
   }
 
   .topic-grid,
@@ -918,6 +1136,19 @@ h3 {
 
   .formula-card {
     right: 0.5rem;
+  }
+
+  .cylinder {
+    height: 360px;
+  }
+
+  .cylinder-demo,
+  .method-panel {
+    padding: 1rem;
+  }
+
+  .read-line {
+    font-size: 0.72rem;
   }
 
   .material-picker {

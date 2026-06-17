@@ -33,6 +33,9 @@ const simTank = document.querySelector(".sim-tank");
 const densityForm = document.querySelector("#density-form");
 const densityAnswer = document.querySelector("#density-answer");
 const calculationStatus = document.querySelector("#calculation-status");
+const volumeForm = document.querySelector("#volume-form");
+const volumeAnswer = document.querySelector("#volume-answer");
+const volumeStatus = document.querySelector("#volume-status");
 
 let selectedMaterial = materials[0];
 let experimentUnlocked = false;
@@ -149,4 +152,20 @@ densityForm.addEventListener("submit", (event) => {
   replayButton.textContent = "Replay Experiment";
   replayAnimation();
 });
+
+volumeForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const answer = Number(volumeAnswer.value);
+
+  if (answer === 24) {
+    volumeStatus.className = "calculation-status is-correct";
+    volumeStatus.textContent = "Correct. The irregular object has a volume of 24 cm3.";
+    return;
+  }
+
+  volumeStatus.className = "calculation-status is-incorrect";
+  volumeStatus.textContent = "Try again: subtract the initial reading from the final reading.";
+});
+
 selectMaterial(selectedMaterial);

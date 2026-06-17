@@ -21,6 +21,7 @@
       <nav class="site-nav" aria-label="Main navigation">
         <a href="#topics">Topics</a>
         <a href="#lab-preview">Lab Preview</a>
+        <a href="#meniscus">Meniscus</a>
         <a href="#simulator">Simulator</a>
         <a href="#roadmap">Roadmap</a>
       </nav>
@@ -133,6 +134,83 @@
             <div class="meter-bar"><span style="width: 42%"></span></div>
           </div>
           <div class="result-pill">Higher density</div>
+        </div>
+      </section>
+
+      <section class="meniscus-lesson" id="meniscus" aria-labelledby="meniscus-title">
+        <div class="section-heading">
+          <p class="section-kicker">Water Displacement</p>
+          <h2 id="meniscus-title">Finding volume with a meniscus</h2>
+          <p>
+            Irregular objects do not have neat sides, so their volume is found
+            by measuring how much water they displace in a measuring cylinder.
+          </p>
+        </div>
+
+        <div class="meniscus-layout">
+          <div class="cylinder-demo" aria-label="Measuring cylinder with meniscus">
+            <div class="cylinder">
+              <div class="ticks" aria-hidden="true">
+                <span>80</span>
+                <span>70</span>
+                <span>60</span>
+                <span>50</span>
+                <span>40</span>
+                <span>30</span>
+              </div>
+              <div class="cylinder-water before">
+                <div class="meniscus-curve"></div>
+              </div>
+              <div class="cylinder-water after">
+                <div class="meniscus-curve"></div>
+              </div>
+              <div class="irregular-object" aria-hidden="true"></div>
+              <div class="read-line initial-line">Initial 40 cm3</div>
+              <div class="read-line final-line">Final 65 cm3</div>
+            </div>
+            <p class="meniscus-note">
+              Read the volume at the bottom of the curved meniscus, not the top.
+            </p>
+          </div>
+
+          <div class="method-panel">
+            <ol class="method-list">
+              <li>Pour water into a measuring cylinder.</li>
+              <li>Read the initial volume at the bottom of the meniscus.</li>
+              <li>Carefully place the irregular object into the water.</li>
+              <li>Read the final volume at the bottom of the meniscus.</li>
+              <li>Calculate object volume = final volume - initial volume.</li>
+            </ol>
+
+            <div class="worked-example">
+              <h3>Worked example</h3>
+              <p>Initial volume = 40 cm3</p>
+              <p>Final volume = 65 cm3</p>
+              <strong>Object volume = 65 - 40 = 25 cm3</strong>
+              <span>Remember: 1 ml = 1 cm3</span>
+            </div>
+
+            <form class="practice-card" id="volume-form">
+              <label for="volume-answer">Practice: 72 cm3 - 48 cm3 = ?</label>
+              <div class="answer-row">
+                <input
+                  id="volume-answer"
+                  name="volume-answer"
+                  type="number"
+                  min="0"
+                  step="1"
+                  placeholder="cm3"
+                  autocomplete="off"
+                />
+                <button class="button primary check-button" type="submit">
+                  Check Volume
+                </button>
+              </div>
+              <p class="calculation-status" id="volume-status">
+                Use final volume minus initial volume.
+              </p>
+            </form>
+          </div>
         </div>
       </section>
 
