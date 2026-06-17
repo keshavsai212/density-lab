@@ -76,12 +76,25 @@ a {
   font-size: 0.95rem;
 }
 
-.site-nav a {
-  text-decoration: none;
+.tab-button {
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.55rem 0.7rem;
 }
 
-.site-nav a:hover {
+.tab-button:hover,
+.tab-button.is-active {
+  background: #e4f4f2;
   color: var(--teal);
+}
+
+.tab-panel[hidden] {
+  display: none !important;
 }
 
 .hero {
@@ -261,6 +274,7 @@ h3 {
 .intro,
 .topics,
 .lab-preview,
+.density-lesson,
 .meniscus-lesson,
 .simulator,
 .roadmap {
@@ -370,6 +384,118 @@ h3 {
   background: var(--yellow);
   padding: 0.5rem 0.75rem;
   font-weight: 700;
+}
+
+.density-lesson {
+  background: #f8f3e8;
+}
+
+.density-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(340px, 1fr);
+  gap: clamp(1.2rem, 4vw, 2.5rem);
+  align-items: stretch;
+}
+
+.concept-panel,
+.particle-panel,
+.density-examples article {
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 12px 28px rgba(22, 39, 56, 0.08);
+}
+
+.concept-panel,
+.particle-panel {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.concept-panel p,
+.particle-panel p,
+.density-examples p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.formula-strip {
+  display: grid;
+  gap: 0.35rem;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  padding: 1rem;
+}
+
+.formula-strip span {
+  color: #d8e2e7;
+  font-weight: 700;
+}
+
+.formula-strip strong {
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.particle-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.particle-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  gap: 0.45rem;
+  min-height: 170px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.85rem;
+  background: #f3f6f7;
+}
+
+.particle-box span {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--coral);
+  box-shadow: 0 5px 10px rgba(23, 33, 43, 0.12);
+}
+
+.low-density span {
+  opacity: 0.7;
+}
+
+.high-density span {
+  background: var(--teal);
+}
+
+.particle-box strong {
+  grid-column: 1 / -1;
+  font-family: "Space Grotesk", Arial, sans-serif;
+}
+
+.density-examples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.density-examples article {
+  padding: 1rem;
+}
+
+.density-examples h3 {
+  margin-bottom: 0.65rem;
+}
+
+.density-worked {
+  margin-top: 1rem;
 }
 
 .meniscus-lesson {
@@ -1046,6 +1172,7 @@ h3 {
 }
 
 @media (max-width: 1160px) {
+  .density-detail-grid,
   .meniscus-layout,
   .simulator-layout {
     grid-template-columns: 1fr;
@@ -1076,6 +1203,7 @@ h3 {
   }
 
   .topic-grid,
+  .density-examples,
   .roadmap-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1106,7 +1234,7 @@ h3 {
 
   .site-nav {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
     font-size: 0.9rem;
     overflow-x: auto;
   }
@@ -1116,7 +1244,12 @@ h3 {
   }
 
   .topic-grid,
+  .density-examples,
   .roadmap-list {
+    grid-template-columns: 1fr;
+  }
+
+  .particle-compare {
     grid-template-columns: 1fr;
   }
 

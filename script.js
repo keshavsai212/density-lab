@@ -36,9 +36,41 @@ const calculationStatus = document.querySelector("#calculation-status");
 const volumeForm = document.querySelector("#volume-form");
 const volumeAnswer = document.querySelector("#volume-answer");
 const volumeStatus = document.querySelector("#volume-status");
+const densityConceptForm = document.querySelector("#density-concept-form");
+const densityConceptAnswer = document.querySelector("#density-concept-answer");
+const densityConceptStatus = document.querySelector("#density-concept-status");
+const tabButtons = document.querySelectorAll(".tab-button");
+const tabPanels = document.querySelectorAll("[data-panel]");
+const tabTriggers = document.querySelectorAll("[data-tab-trigger]");
 
 let selectedMaterial = materials[0];
 let experimentUnlocked = false;
+
+function showTab(tabName) {
+  tabPanels.forEach((panel) => {
+    const isActive = panel.dataset.panel === tabName;
+    panel.hidden = !isActive;
+    panel.classList.toggle("is-active", isActive);
+  });
+
+  tabButtons.forEach((button) => {
+    const isActive = button.dataset.tab === tabName;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  });
+
+  window.history.replaceState(null, "", `#${tabName}`);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function getInitialTab() {
+  const hash = window.location.hash.replace("#", "");
+  const validTabs = ["home", "density", "meniscus", "simulator", "review"];
+
+  if (hash === "topics" || hash === "roadmap") return "review";
+  if (hash === "lab-preview") return "home";
+  return validTabs.includes(hash) ? hash : "home";
+}
 
 function getDensity(material) {
   return material.mass / material.volume;
@@ -123,6 +155,14 @@ materials.forEach((material) => {
   materialPicker.append(button);
 });
 
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => showTab(button.dataset.tab));
+});
+
+tabTriggers.forEach((trigger) => {
+  trigger.addEventListener("click", () => showTab(trigger.dataset.tabTrigger));
+});
+
 replayButton.addEventListener("click", replayAnimation);
 densityForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -168,4 +208,20 @@ volumeForm.addEventListener("submit", (event) => {
   volumeStatus.textContent = "Try again: subtract the initial reading from the final reading.";
 });
 
+densityConceptForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const answer = Number(densityConceptAnswer.value);
+
+  if (answer === 4) {
+    densityConceptStatus.className = "calculation-status is-correct";
+    densityConceptStatus.textContent = "Correct. 80 divided by 20 is 4 g/cm3.";
+    return;
+  }
+
+  densityConceptStatus.className = "calculation-status is-incorrect";
+  densityConceptStatus.textContent = "Try again: density equals mass divided by volume.";
+});
+
 selectMaterial(selectedMaterial);
+showTab(getInitialTab());
