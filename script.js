@@ -52,11 +52,15 @@ const tabButtons = document.querySelectorAll(".tab-button");
 const tabPanels = document.querySelectorAll("[data-panel]");
 const tabTriggers = document.querySelectorAll("[data-tab-trigger]");
 const bottomHelper = document.querySelector("#bottom-helper");
+const resetActivity = document.querySelector("#reset-activity");
 
 let selectedMaterial = materials[0];
 let experimentUnlocked = false;
+let activeTab = "home";
 
 function showTab(tabName) {
+  activeTab = tabName;
+
   tabPanels.forEach((panel) => {
     const isActive = panel.dataset.panel === tabName;
     panel.hidden = !isActive;
@@ -75,12 +79,7 @@ function showTab(tabName) {
 }
 
 function getInitialTab() {
-  const hash = window.location.hash.replace("#", "");
-  const validTabs = ["home", "density", "meniscus", "simulator", "review"];
-
-  if (hash === "topics" || hash === "roadmap") return "review";
-  if (hash === "lab-preview") return "home";
-  return validTabs.includes(hash) ? hash : "home";
+  return "home";
 }
 
 function getDensity(material) {
@@ -129,6 +128,10 @@ function replayAnimation() {
     simObject.classList.add(behavior);
     simTank.classList.add("is-splashing");
   });
+}
+
+function resetSimulator() {
+  selectMaterial(selectedMaterial);
 }
 
 function selectMaterial(material) {
@@ -242,6 +245,23 @@ function replayDisplacementExperiment() {
   meniscusReadingStatus.textContent = "The object is lowered slowly, so the water rises by the displaced volume.";
 }
 
+function resetMeniscusExperiment() {
+  initialReading.value = "";
+  finalReading.value = "";
+  volumeAnswer.value = "";
+  readingStatus.className = "calculation-status";
+  readingStatus.textContent = "Estimate both readings from the bottom of the meniscus.";
+  volumeStatus.className = "calculation-status";
+  volumeStatus.textContent = "Use final volume minus initial volume.";
+  meniscusReadingStatus.className = "calculation-status";
+  meniscusReadingStatus.textContent = "Watch the object lower into the water, then choose the correct place to read.";
+
+  displacementCylinder.classList.remove("is-replaying");
+  requestAnimationFrame(() => {
+    displacementCylinder.classList.add("is-replaying");
+  });
+}
+
 replayDisplacement.addEventListener("click", replayDisplacementExperiment);
 
 topMeniscus.addEventListener("click", () => {
@@ -286,6 +306,37 @@ densityConceptForm.addEventListener("submit", (event) => {
   densityConceptStatus.className = "calculation-status is-incorrect";
   densityConceptStatus.textContent = "Try again: density equals mass divided by volume.";
 });
+
+function resetDensityLesson() {
+  densityConceptAnswer.value = "";
+  densityConceptStatus.className = "calculation-status";
+  densityConceptStatus.textContent = "Divide mass by volume.";
+}
+
+function resetCurrentActivity() {
+  if (activeTab === "density") {
+    resetDensityLesson();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+
+  if (activeTab === "meniscus") {
+    resetMeniscusExperiment();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+
+  if (activeTab === "simulator") {
+    resetSimulator();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+
+  topicCards.forEach((card) => card.classList.remove("is-selected"));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+resetActivity.addEventListener("click", resetCurrentActivity);
 
 selectMaterial(selectedMaterial);
 showTab(getInitialTab());

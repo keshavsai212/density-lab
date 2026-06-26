@@ -97,6 +97,42 @@ a {
   display: none !important;
 }
 
+.reset-control {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.5rem 0.7rem;
+  box-shadow: 0 8px 18px rgba(22, 39, 56, 0.08);
+}
+
+.reset-control span {
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.reset-control small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.reset-control:hover,
+.reset-control:focus-visible {
+  background: #e4f4f2;
+  border-color: var(--teal);
+  color: var(--teal);
+  outline: none;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
@@ -1451,6 +1487,11 @@ h3 {
     justify-content: flex-start;
     font-size: 0.9rem;
     overflow-x: auto;
+  }
+
+  .reset-control {
+    min-height: 40px;
+    padding: 0.45rem 0.6rem;
   }
 
   h1 {

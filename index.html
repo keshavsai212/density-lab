@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Space+Grotesk:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260626-reset" />
   </head>
   <body>
     <header class="site-header">
@@ -25,6 +25,10 @@
         <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="simulator">Simulator</button>
         <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="review">Review</button>
       </nav>
+      <button class="reset-control" id="reset-activity" type="button" aria-label="Reset current activity" title="Reset activity">
+        <span aria-hidden="true">⟳</span>
+        <small>Reset</small>
+      </button>
     </header>
 
     <main id="top">
@@ -504,6 +508,6 @@
       <p>Built as a foundation for an IGCSE density learning website.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260626-reset"></script>
   </body>
 </html>
