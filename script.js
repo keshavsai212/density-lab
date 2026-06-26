@@ -36,12 +36,22 @@ const calculationStatus = document.querySelector("#calculation-status");
 const volumeForm = document.querySelector("#volume-form");
 const volumeAnswer = document.querySelector("#volume-answer");
 const volumeStatus = document.querySelector("#volume-status");
+const displacementCylinder = document.querySelector("#displacement-cylinder");
+const replayDisplacement = document.querySelector("#replay-displacement");
+const topMeniscus = document.querySelector("#top-meniscus");
+const bottomMeniscus = document.querySelector("#bottom-meniscus");
+const meniscusReadingStatus = document.querySelector("#meniscus-reading-status");
+const readingForm = document.querySelector("#reading-form");
+const initialReading = document.querySelector("#initial-reading");
+const finalReading = document.querySelector("#final-reading");
+const readingStatus = document.querySelector("#reading-status");
 const densityConceptForm = document.querySelector("#density-concept-form");
 const densityConceptAnswer = document.querySelector("#density-concept-answer");
 const densityConceptStatus = document.querySelector("#density-concept-status");
 const tabButtons = document.querySelectorAll(".tab-button");
 const tabPanels = document.querySelectorAll("[data-panel]");
 const tabTriggers = document.querySelectorAll("[data-tab-trigger]");
+const bottomHelper = document.querySelector("#bottom-helper");
 
 let selectedMaterial = materials[0];
 let experimentUnlocked = false;
@@ -61,6 +71,7 @@ function showTab(tabName) {
 
   window.history.replaceState(null, "", `#${tabName}`);
   window.scrollTo({ top: 0, behavior: "smooth" });
+  updateBottomHelper();
 }
 
 function getInitialTab() {
@@ -163,6 +174,18 @@ tabTriggers.forEach((trigger) => {
   trigger.addEventListener("click", () => showTab(trigger.dataset.tabTrigger));
 });
 
+function updateBottomHelper() {
+  const scrollPosition = window.scrollY + window.innerHeight;
+  const pageHeight = document.documentElement.scrollHeight;
+  const isNearBottom = pageHeight - scrollPosition < 180;
+  const hasScrollablePage = pageHeight > window.innerHeight + 220;
+
+  bottomHelper.classList.toggle("is-visible", isNearBottom && hasScrollablePage);
+}
+
+window.addEventListener("scroll", updateBottomHelper, { passive: true });
+window.addEventListener("resize", updateBottomHelper);
+
 replayButton.addEventListener("click", replayAnimation);
 densityForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -206,6 +229,47 @@ volumeForm.addEventListener("submit", (event) => {
 
   volumeStatus.className = "calculation-status is-incorrect";
   volumeStatus.textContent = "Try again: subtract the initial reading from the final reading.";
+});
+
+function replayDisplacementExperiment() {
+  displacementCylinder.classList.remove("is-replaying");
+
+  requestAnimationFrame(() => {
+    displacementCylinder.classList.add("is-replaying");
+  });
+
+  meniscusReadingStatus.className = "calculation-status";
+  meniscusReadingStatus.textContent = "The object is lowered slowly, so the water rises by the displaced volume.";
+}
+
+replayDisplacement.addEventListener("click", replayDisplacementExperiment);
+
+topMeniscus.addEventListener("click", () => {
+  meniscusReadingStatus.className = "calculation-status is-incorrect";
+  meniscusReadingStatus.textContent = "Not quite. Reading the top of the curve makes the volume too high.";
+});
+
+bottomMeniscus.addEventListener("click", () => {
+  meniscusReadingStatus.className = "calculation-status is-correct";
+  meniscusReadingStatus.textContent = "Correct. Always read the bottom of the meniscus at eye level.";
+});
+
+readingForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const initial = Number(initialReading.value);
+  const final = Number(finalReading.value);
+  const initialCorrect = initial === 40;
+  const finalCorrect = final === 65;
+
+  if (initialCorrect && finalCorrect) {
+    readingStatus.className = "calculation-status is-correct";
+    readingStatus.textContent = "Correct. The water rises from 40 cm3 to 65 cm3.";
+    return;
+  }
+
+  readingStatus.className = "calculation-status is-incorrect";
+  readingStatus.textContent = "Try again. Read the bottom of each curved meniscus.";
 });
 
 densityConceptForm.addEventListener("submit", (event) => {

@@ -246,7 +246,8 @@
 
         <div class="meniscus-layout">
           <div class="cylinder-demo" aria-label="Measuring cylinder with meniscus">
-            <div class="cylinder">
+            <div class="cylinder is-replaying" id="displacement-cylinder">
+              <div class="lowering-thread" aria-hidden="true"></div>
               <div class="ticks" aria-hidden="true">
                 <span>80</span>
                 <span>70</span>
@@ -261,12 +262,44 @@
               <div class="cylinder-water after">
                 <div class="meniscus-curve"></div>
               </div>
+              <div class="meniscus-guide top-guide">Top reading</div>
+              <div class="meniscus-guide bottom-guide">Read here</div>
+              <div class="ripple-ring ripple-one" aria-hidden="true"></div>
+              <div class="ripple-ring ripple-two" aria-hidden="true"></div>
               <div class="irregular-object" aria-hidden="true"></div>
               <div class="read-line initial-line">Initial 40 cm3</div>
               <div class="read-line final-line">Final 65 cm3</div>
             </div>
+            <div class="displacement-readouts" aria-label="Displacement readings">
+              <div>
+                <span>Initial</span>
+                <strong>40 cm3</strong>
+              </div>
+              <div>
+                <span>Final</span>
+                <strong>65 cm3</strong>
+              </div>
+              <div>
+                <span>Object volume</span>
+                <strong>25 cm3</strong>
+              </div>
+            </div>
             <p class="meniscus-note">
               Read the volume at the bottom of the curved meniscus, not the top.
+            </p>
+            <div class="meniscus-actions">
+              <button class="button primary" id="replay-displacement" type="button">
+                Replay Experiment
+              </button>
+              <button class="button ghost" id="top-meniscus" type="button">
+                Top of Meniscus
+              </button>
+              <button class="button ghost" id="bottom-meniscus" type="button">
+                Bottom of Meniscus
+              </button>
+            </div>
+            <p class="calculation-status" id="meniscus-reading-status">
+              Watch the object lower into the water, then choose the correct place to read.
             </p>
           </div>
 
@@ -286,6 +319,42 @@
               <strong>Object volume = 65 - 40 = 25 cm3</strong>
               <span>Remember: 1 ml = 1 cm3</span>
             </div>
+
+            <form class="practice-card reading-card" id="reading-form">
+              <label>Practice mode: estimate the cylinder readings</label>
+              <div class="reading-inputs">
+                <label for="initial-reading">
+                  Initial reading
+                  <input
+                    id="initial-reading"
+                    name="initial-reading"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="cm3"
+                    autocomplete="off"
+                  />
+                </label>
+                <label for="final-reading">
+                  Final reading
+                  <input
+                    id="final-reading"
+                    name="final-reading"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="cm3"
+                    autocomplete="off"
+                  />
+                </label>
+              </div>
+              <button class="button primary check-button" type="submit">
+                Check Readings
+              </button>
+              <p class="calculation-status" id="reading-status">
+                Estimate both readings from the bottom of the meniscus.
+              </p>
+            </form>
 
             <form class="practice-card" id="volume-form">
               <label for="volume-answer">Practice: 72 cm3 - 48 cm3 = ?</label>
@@ -419,6 +488,17 @@
         </ol>
       </section>
     </main>
+
+    <nav class="bottom-helper" id="bottom-helper" aria-label="Quick navigation">
+      <button class="quick-icon" type="button" data-tab-trigger="home" aria-label="Go to Home">
+        <span aria-hidden="true">⌂</span>
+        <small>Home</small>
+      </button>
+      <button class="quick-icon" type="button" data-tab-trigger="simulator" aria-label="Go to Lab and Questions">
+        <span aria-hidden="true">?</span>
+        <small>Lab</small>
+      </button>
+    </nav>
 
     <footer class="site-footer">
       <p>Built as a foundation for an IGCSE density learning website.</p>
