@@ -15,9 +15,20 @@
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "light");
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260627-dark" />
+    <link rel="stylesheet" href="styles.css?v=20260627-sun" />
   </head>
   <body>
+    <div class="sun-field" aria-hidden="true">
+      <span class="sun-core"></span>
+      <span class="sun-halo"></span>
+    </div>
+
+    <div class="star-field" aria-hidden="true">
+      <span class="stars stars-small"></span>
+      <span class="stars stars-medium"></span>
+      <span class="stars stars-bright"></span>
+    </div>
+
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Density Lab home">
         <span class="brand-mark">D</span>
