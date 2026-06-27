@@ -53,10 +53,51 @@ const tabPanels = document.querySelectorAll("[data-panel]");
 const tabTriggers = document.querySelectorAll("[data-tab-trigger]");
 const bottomHelper = document.querySelector("#bottom-helper");
 const resetActivity = document.querySelector("#reset-activity");
+const themeToggle = document.querySelector("#theme-toggle");
+const themeIcon = document.querySelector("[data-theme-icon]");
+const themeLabel = document.querySelector("[data-theme-label]");
+const themePreference = window.matchMedia("(prefers-color-scheme: dark)");
+const THEME_STORAGE_KEY = "density-theme";
 
 let selectedMaterial = materials[0];
 let experimentUnlocked = false;
 let activeTab = "home";
+
+function getPreferredTheme() {
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+
+  if (savedTheme === "dark" || savedTheme === "light") {
+    return savedTheme;
+  }
+
+  return themePreference.matches ? "dark" : "light";
+}
+
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+
+  document.documentElement.dataset.theme = theme;
+  themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+  themeToggle.title = isDark ? "Switch to light mode" : "Switch to dark mode";
+  themeIcon.textContent = isDark ? "☀" : "☾";
+  themeLabel.textContent = isDark ? "Light" : "Dark";
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+  localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+  applyTheme(nextTheme);
+}
+
+themeToggle.addEventListener("click", toggleTheme);
+
+themePreference.addEventListener("change", () => {
+  if (!localStorage.getItem(THEME_STORAGE_KEY)) {
+    applyTheme(getPreferredTheme());
+  }
+});
 
 function showTab(tabName) {
   activeTab = tabName;
@@ -338,5 +379,6 @@ function resetCurrentActivity() {
 
 resetActivity.addEventListener("click", resetCurrentActivity);
 
+applyTheme(getPreferredTheme());
 selectMaterial(selectedMaterial);
 showTab(getInitialTab());

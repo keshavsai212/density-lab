@@ -10,7 +10,12 @@
       href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Space+Grotesk:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260626-reset" />
+    <script>
+      const savedTheme = localStorage.getItem("density-theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "light");
+    </script>
+    <link rel="stylesheet" href="styles.css?v=20260627-dark" />
   </head>
   <body>
     <header class="site-header">
@@ -25,10 +30,16 @@
         <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="simulator">Simulator</button>
         <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="review">Review</button>
       </nav>
-      <button class="reset-control" id="reset-activity" type="button" aria-label="Reset current activity" title="Reset activity">
-        <span aria-hidden="true">⟳</span>
-        <small>Reset</small>
-      </button>
+      <div class="header-controls" aria-label="Site controls">
+        <button class="icon-control theme-control" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">
+          <span aria-hidden="true" data-theme-icon>☾</span>
+          <small data-theme-label>Dark</small>
+        </button>
+        <button class="icon-control reset-control" id="reset-activity" type="button" aria-label="Reset current activity" title="Reset activity">
+          <span aria-hidden="true">⟳</span>
+          <small>Reset</small>
+        </button>
+      </div>
     </header>
 
     <main id="top">
@@ -508,6 +519,6 @@
       <p>Built as a foundation for an IGCSE density learning website.</p>
     </footer>
 
-    <script src="script.js?v=20260626-reset"></script>
+    <script src="script.js?v=20260627-dark"></script>
   </body>
 </html>
