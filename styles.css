@@ -236,15 +236,15 @@ body::after {
 }
 
 :root[data-theme="dark"] .stars-small {
-  animation: star-pulse-small 3.2s ease-in-out infinite;
+  animation: star-orbit-small 18s ease-in-out infinite;
 }
 
 :root[data-theme="dark"] .stars-medium {
-  animation: star-pulse-medium 5.1s ease-in-out infinite;
+  animation: star-orbit-medium 25s ease-in-out infinite reverse;
 }
 
 :root[data-theme="dark"] .stars-bright {
-  animation: star-pulse-bright 6.8s ease-in-out infinite;
+  animation: star-orbit-bright 32s ease-in-out infinite;
 }
 
 @keyframes far-star-twinkle {
@@ -274,45 +274,60 @@ body::after {
   }
 }
 
-@keyframes star-pulse-small {
-  0%,
-  100% {
-    filter: brightness(0.75);
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  45% {
-    filter: brightness(1.7);
-    opacity: 0.86;
-    transform: scale(1.015);
-  }
-}
-
-@keyframes star-pulse-medium {
-  0%,
-  100% {
-    filter: brightness(0.68);
-    opacity: 0.22;
-    transform: scale(0.995);
-  }
-  55% {
-    filter: brightness(1.85);
-    opacity: 0.78;
-    transform: scale(1.025);
-  }
-}
-
-@keyframes star-pulse-bright {
+@keyframes star-orbit-small {
   0%,
   100% {
     filter: brightness(0.72);
-    opacity: 0.18;
-    transform: scale(0.99);
+    opacity: 0.28;
+    transform: translate(0, 0) rotate(0deg);
   }
   35% {
-    filter: brightness(2.1);
-    opacity: 0.94;
-    transform: scale(1.04);
+    filter: brightness(2.15);
+    opacity: 0.95;
+    transform: translate(10px, -8px) rotate(0.35deg);
+  }
+  70% {
+    filter: brightness(1.25);
+    opacity: 0.48;
+    transform: translate(-8px, 9px) rotate(-0.2deg);
+  }
+}
+
+@keyframes star-orbit-medium {
+  0%,
+  100% {
+    filter: brightness(0.66);
+    opacity: 0.2;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  42% {
+    filter: brightness(2.35);
+    opacity: 0.9;
+    transform: translate(-14px, 8px) rotate(-0.42deg);
+  }
+  78% {
+    filter: brightness(1.35);
+    opacity: 0.44;
+    transform: translate(8px, -12px) rotate(0.25deg);
+  }
+}
+
+@keyframes star-orbit-bright {
+  0%,
+  100% {
+    filter: brightness(0.7);
+    opacity: 0.16;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  30% {
+    filter: brightness(2.7);
+    opacity: 1;
+    transform: translate(12px, 12px) rotate(0.28deg);
+  }
+  68% {
+    filter: brightness(1.45);
+    opacity: 0.5;
+    transform: translate(-12px, -6px) rotate(-0.34deg);
   }
 }
 
