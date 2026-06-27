@@ -377,7 +377,15 @@ function resetCurrentActivity() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-resetActivity.addEventListener("click", resetCurrentActivity);
+function reloadSiteFromHome() {
+  const url = new URL(window.location.href);
+
+  url.searchParams.set("refresh", Date.now().toString());
+  url.hash = "home";
+  window.location.replace(url.toString());
+}
+
+resetActivity.addEventListener("click", reloadSiteFromHome);
 
 applyTheme(getPreferredTheme());
 selectMaterial(selectedMaterial);
